@@ -9,10 +9,15 @@
 import UIKit
 
 class FirstViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    //更改狀態列為白色
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     @IBOutlet weak var myTableView: UITableView!
     
-    var toDos = ["Buy iPhone X","Go to GYM","Write a blog post"]
+    var toDos = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +40,9 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = toDos[indexPath.row]
+        //更改cell文字及顏色
+        cell.textLabel?.textColor = .white
+        cell.textLabel?.font = UIFont(name: "arial", size: 24)
         return cell
     }
 }
