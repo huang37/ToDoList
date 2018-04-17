@@ -17,12 +17,16 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     @IBOutlet weak var myTableView: UITableView!
     
-    var toDos = [String]()
+    var toDos = UserDefaults.standard.stringArray(forKey: "todos") ?? [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         myTableView.dataSource = self
         myTableView.delegate = self
+        //將資料從手機取出來顯示
+//        if let loadedTodos = UserDefaults.standard.stringArray(forKey: "todos") {
+//            toDos = loadedTodos
+//        }
     }
 
     override func didReceiveMemoryWarning() {

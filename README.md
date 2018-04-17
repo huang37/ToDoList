@@ -13,3 +13,8 @@ commint4:
 3.input輸入完按OK後，會清空input  
 4.button會回復成Back  
 ***  
+commint5:  
+1.將待辦事項存到手機 (第二頁) 
+2.將資料從手機取出來顯示 （第一頁）  
+3.按手機的return鍵可以將資料輸入  
+***  

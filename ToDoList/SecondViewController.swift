@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UITextFieldDelegate {
     
     //更改狀態列為白色
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -27,12 +27,15 @@ class SecondViewController: UIViewController {
         }
     }
     @IBAction func buttonPressed(_ sender: UIButton) {
-        //透過tab bar controller傳送資料 
+        //透過tab bar controller傳送資料
         if let text = myTextInput.text {
             if text != "" {
                 if let firstViewController = tabBarController?.viewControllers?[0] as? FirstViewController {
                     firstViewController.toDos.append(text)
                     firstViewController.myTableView.reloadData()
+                    
+                    //將資料存進手機                    
+                    UserDefaults.standard.set(firstViewController.toDos, forKey: "todos")
                 }
             }
         }
@@ -46,11 +49,18 @@ class SecondViewController: UIViewController {
         super.viewDidLoad()
         //一進入畫面時，讓input變成焦點，鍵盤會跑出來
         myTextInput.becomeFirstResponder()
+        myTextInput.delegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        buttonPressed(UIButton())
+        return true
     }
 
 
